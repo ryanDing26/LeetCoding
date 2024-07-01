@@ -18,7 +18,13 @@ class Solution:
 
         Approach
         --------
-        1. Set the lowest
+        1. Set the lowest prices value to the first in the list and the current
+           best profit to 0.
+        2. Iterate over the prices array and if you find some lower price than
+           the current lowest price (to serve as a buying price), update
+           lowest and constantly check if selling on that day would lead to the
+           highest value profit. Repeat until end of loop.
+        3. Return max profit value gained in the profit variable.
 
         TC/SC
         -----
