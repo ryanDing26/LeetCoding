@@ -42,21 +42,30 @@ class Solution:
         '''
         nums = sorted(nums)
         triplets = []
+        # i : index, nonpos: third value
         for i, nonpos in enumerate(nums):
+            # stop iterating when we hit nonnegative values
             if nonpos > 0:
                 break
+            # if the last value was the exact same, continue
             if i > 0 and nonpos == nums[i - 1]:
                 continue
+            # left is right after the index, right is at the end of the array
             l, r = i + 1, len(nums) - 1
+            # two pointer approach
             while l < r:
+                # triplet found, append to result and move both pointers in
                 if nums[i] + nums[l] + nums[r] == 0:
                     triplets.append([nonpos, nums[l], nums[r]])
                     l += 1
                     r -= 1
+                    # if moving left means you get the same value, keep moving left; no duplicates
                     while nums[l] == nums[l - 1] and l < r:
                         l += 1 
+                # the 3sum is less than 0, meaning the left pointer's value is too low; move it inwards
                 elif nums[i] + nums[l] + nums[r] < 0:
                     l += 1
+                # the 3sum is greater than 0, meaning the right pointer's value is too high; move it inwards
                 else:
                     r -= 1
 
